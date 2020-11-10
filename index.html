@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body{
+      background-color: #EFEFEF;
+      margin: 0;
+      padding: 10px;
+    }
+    .card-item {
+      border: none;
+      color: #FFFFFF;
+      padding: 50px;
+      font-size: 50px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .main-contain {
+      display: flex;
+    }
+    .cards-wrapper {
+      flex: 80%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+    }
+    .action-buttons{
+      display: flex;
+      flex: 20%;
+      flex-direction: column;
+      padding: 30px;
+      text-align: center;
+    }
+    button{
+      background-color: #72C3DC;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      outline: none;
+      padding: 15px 32px;
+      margin-bottom: 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      body{
+        background-color: #FFFFFF;
+        padding: 0;
+      }
+      .container-header {
+        background-color: #333333;
+        color: #FFFFFF;
+        font-size: 20px;
+      }
+      .main-contain{
+        flex-direction: column-reverse;
+        padding: 0 10px;
+      }
+      .cards-wrapper{
+        grid-template-columns: auto;
+        grid-row-gap: 5px;
+      }
+      .card-item {
+        background-color: #EFEFEF !important;
+        color: #000000;
+        font-size: 24px;
+        font-weight: normal;
+        padding: 10px;
+      }
+      .action-buttons {
+        align-self: center;
+        flex-direction: row;
+        padding: 10px;
+      }
+      button{
+        margin: 0 5px;
+        width: 150px;
+      }
+    }
+    .container-header {
+      padding: 10px;
+      text-align: center;
+    }
+    footer {
+      padding: 10px;
+      text-align: center;
+    }
+	</style>
+	<script>
+    var items = [
+      {
+        value:1,
+        color: '6F98A8'
+      },
+      {
+        value:2,
+        color: '2B8EAD'
+      },
+      {
+        value:3,
+        color: '2F454E'
+      },
+      {
+        value:4,
+        color: '2B8EAD'
+      },
+      {
+        value:5,
+        color: '2F454E'
+      },
+      {
+        value:6,
+        color: 'BFBFBF'
+      },
+      {
+        value:7,
+        color: 'BFBFBF'
+      },
+      {
+        value:8,
+        color: '6F98A8'
+      },
+      {
+        value:9,
+        color: '2F454E'
+      },
+    ];
+
+    function shuffle() {
+      var shuffleItems = items.sort(() => Math.random() - 0.5);
+      document.getElementById("cards").innerHTML = "";
+      for (const item of shuffleItems) {
+        let card = document.createElement("div");
+        card.className = "card-item";
+        card.id = "card-item-" + item;
+        card.style.backgroundColor = '#' + item.color;
+        card.style.borderLeft = '10px solid #' + item.color;
+        card.innerHTML = item.value;
+        document.getElementById("cards").appendChild(card);
+      }
+    }
+
+    function sort() {
+      var sortItems = items.sort((a, b) => a.value - b.value);
+      document.getElementById("cards").innerHTML = "";
+      for (const item of sortItems) {
+        let card = document.createElement("div");
+        card.className = "card-item";
+        card.id = "card-item-" + item;
+        card.style.backgroundColor = '#' + item.color;
+        card.style.borderLeft = '10px solid #' + item.color;
+        card.innerHTML = item.value;
+        document.getElementById("cards").appendChild(card);
+      }
+    }
+
+  </script>
+</head>
+<body onload="sort()">
+  <div class="container">
+    <div class="container-header">
+      Shuffle and Sort
+    </div>
+    <div class="main-contain">
+      <div class="cards-wrapper" id="cards">
+      </div>
+      <div class="action-buttons">
+        <button type="button" onclick="shuffle()">SHUFFLE</button>
+        <button type="button" onclick="sort()">SORT</button>
+      </div>
+    </div>
+  </div>
+  <footer>Shuffle and Sort by Rajib Patowary</footer>
+  
+</body>
+</html>
