@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body{
+    body {
       background-color: #EFEFEF;
       margin: 0;
       padding: 10px;
     }
+
     .card-item {
       border: none;
       color: #FFFFFF;
@@ -17,22 +19,26 @@
       font-weight: bold;
       text-align: center;
     }
+
     .main-contain {
       display: flex;
     }
+
     .cards-wrapper {
       flex: 80%;
       display: grid;
       grid-template-columns: auto auto auto;
     }
-    .action-buttons{
+
+    .action-buttons {
       display: flex;
       flex: 20%;
       flex-direction: column;
       padding: 30px;
       text-align: center;
     }
-    button{
+
+    button {
       background-color: #72C3DC;
       border: none;
       border-radius: 6px;
@@ -46,24 +52,29 @@
       display: inline-block;
       font-size: 16px;
     }
+
     @media (max-width: 600px) {
-      body{
+      body {
         background-color: #FFFFFF;
         padding: 0;
       }
+
       .container-header {
         background-color: #333333;
         color: #FFFFFF;
         font-size: 20px;
       }
-      .main-contain{
+
+      .main-contain {
         flex-direction: column-reverse;
         padding: 0 10px;
       }
-      .cards-wrapper{
+
+      .cards-wrapper {
         grid-template-columns: auto;
         grid-row-gap: 5px;
       }
+
       .card-item {
         background-color: #EFEFEF !important;
         color: #000000;
@@ -71,69 +82,72 @@
         font-weight: normal;
         padding: 10px;
       }
+
       .action-buttons {
         align-self: center;
         flex-direction: row;
         padding: 10px;
       }
-      button{
+
+      button {
         margin: 0 5px;
         width: 150px;
       }
     }
+
     .container-header {
       padding: 10px;
       text-align: center;
     }
+
     footer {
       padding: 10px;
       text-align: center;
     }
-	</style>
-	<script>
+  </style>
+  <script>
     var items = [
       {
-        value:1,
+        value: 1,
         color: '6F98A8'
       },
       {
-        value:2,
+        value: 2,
         color: '2B8EAD'
       },
       {
-        value:3,
+        value: 3,
         color: '2F454E'
       },
       {
-        value:4,
+        value: 4,
         color: '2B8EAD'
       },
       {
-        value:5,
+        value: 5,
         color: '2F454E'
       },
       {
-        value:6,
+        value: 6,
         color: 'BFBFBF'
       },
       {
-        value:7,
+        value: 7,
         color: 'BFBFBF'
       },
       {
-        value:8,
+        value: 8,
         color: '6F98A8'
       },
       {
-        value:9,
+        value: 9,
         color: '2F454E'
       },
     ];
 
-    function shuffle() {
-      var shuffleItems = items.sort(() => Math.random() - 0.5);
+    function generateCardItems(cardItems) {
       document.getElementById("cards").innerHTML = "";
-      for (const item of shuffleItems) {
+      for (const item of cardItems) {
         let card = document.createElement("div");
         card.className = "card-item";
         card.id = "card-item-" + item;
@@ -142,24 +156,21 @@
         card.innerHTML = item.value;
         document.getElementById("cards").appendChild(card);
       }
+    }
+
+    function shuffle() {
+      var shuffleItems = items.sort(() => Math.random() - 0.5);
+      generateCardItems(shuffleItems);
     }
 
     function sort() {
       var sortItems = items.sort((a, b) => a.value - b.value);
-      document.getElementById("cards").innerHTML = "";
-      for (const item of sortItems) {
-        let card = document.createElement("div");
-        card.className = "card-item";
-        card.id = "card-item-" + item;
-        card.style.backgroundColor = '#' + item.color;
-        card.style.borderLeft = '10px solid #' + item.color;
-        card.innerHTML = item.value;
-        document.getElementById("cards").appendChild(card);
-      }
+      generateCardItems(sortItems);
     }
 
   </script>
 </head>
+
 <body onload="sort()">
   <div class="container">
     <div class="container-header">
@@ -175,6 +186,7 @@
     </div>
   </div>
   <footer>Shuffle and Sort by Rajib Patowary</footer>
-  
+
 </body>
+
 </html>
